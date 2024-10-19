@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes | Taking</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'MyAppStatic/css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'MyAppStatic/css/index_page_css.css' %}">
+    <link rel="icon " href="{% static 'MyAppStatic/media/notes_taiking.png' %}">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Prociono&display=swap');
+    </style>
+</head>
+<body>
+<div class="full_content">
+<div class="texts">
+<h1>Keep your Notes !</h1>
+<p>"Capture ideas, organize thoughts—notes that inspire action!"</p>
+</div>
+<div class="notes">
+
+    <form autocomplete="off">
+        <input type="text" name="search" placeholder="Search here">
+        <input type="image" src="{% static 'MyAppStatic/media/search_icon.png' %}" alt="Delete" width="40px" height="40px" onclick="clearData(0">
+        <a href="{% url 'home' %}"><img src="{% static 'MyAppStatic/media/all_icon.png' %}" height="45px" width="45px"  id="all_icon"></a>
+    </form>
+    <div class="add_icon">
+        <a href="{% url 'addnotes' %}"><img src="{% static 'MyAppStatic/media/add_notes_icon.png' %}" height="60px" width="60px"></a>
+    </div>
+    <div class="four_column">
+    {% for note in notes %}
+    <div class="notes_content">
+    <div class="icons">
+    <a href="{% url 'updatenotes' note.id %}"><img src="{% static 'MyAppStatic/media/edit.png' %}" height="25px" width="25px"></a>
+    <a href="{% url 'deletenotes' note.id %}"><img src="{% static 'MyAppStatic/media/delete.png' %}" height="25px" width="25px"></a>
+    <a href="{% url 'viewnotes' note.id %}"><img src="{% static 'MyAppStatic/media/view.png' %}" height="25px" width="25px"></a>
+    </div>
+   <p id="date_p">{{note.modified_date}}</p>
+
+        <p id="head_p">{{note.heading}}</p>
+        <p id="description_p">{{note.description}}</p>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+
+</div>
+<script>
+   function clearData() {
+        document.getElementById('heading').value = '';
+        document.getElementById('description').value = '';
+    }
+</script>
+</body>
+</html>

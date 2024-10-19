@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <title>Notes | Taking</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'MyAppStatic/css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'MyAppStatic/css/viewNotesCss.css' %}">
+    <link rel="icon " href="{% static 'MyAppStatic/media/notes_taiking.png' %}">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Prociono&display=swap');
+    </style>
+</head>
+<body>
+<div class="full_content">
+    <div class="content">
+        <h3>{{notes.modified_date}}</h3>
+        <h1>{{notes.heading}}</h1>
+        <p>{{notes.description}}</p>
+    </div>
+    <div>
+        <a href="{% url 'home' %}"><img src="{% static 'MyAppStatic/media/home_icon.png' %}" height="30px" width="30px"></a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <title>Notes | Taking</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'MyAppStatic/css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'MyAppStatic/css/addNotesCss.css' %}">
+    <link rel="icon " href="{% static 'MyAppStatic/media/notes_taiking.png' %}">
+   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Prociono&display=swap');
+    </style>
+</head>
+<body>
+<div class="adding_data">
+    <div class="texts">
+        <h2>Add your notes here !</h2>
+    </div>
+    <form method="post" autocomplete="off">
+        {% csrf_token %}
+
+        <label for="heading">Title </label>
+        <input type="text" name="heading" id="heading" placeholder="title please">
+        <label for="description">Description </label>
+        <textarea type="text" name="description" id="description" placeholder="Give description of your title"></textarea>
+        <input type="image" src="{% static 'MyAppStatic/media/plus_icon.png' %}" alt="Add" width="55px" height="55px">
+
+    </form>
+    <div class="buttons" >
+        <img src="{% static 'MyAppStatic/media/clear_icon.png' %}" height="45px" width="45px" onclick="clearData()">
+        <a href="{% url 'home' %}"><img src="{% static 'MyAppStatic/media/home_icon.png' %}" height="40px" width="40px"></a>
+    </div>
+
+
+</div>
+<script>
+   function clearData() {
+        document.getElementById('heading').value = '';
+        document.getElementById('description').value = '';
+    }
+</script>
+</body>
+</html>

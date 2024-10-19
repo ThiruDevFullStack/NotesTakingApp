@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes | Taking</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'MyAppStatic/css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'MyAppStatic/css/updateNotes.css' %}">
+    <link rel="icon " href="{% static 'MyAppStatic/media/notes_taiking.png' %}">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Prociono&display=swap');
+    </style>
+</head>
+<body>
+<form method="post" autocomplete="off">
+    {% csrf_token %}
+    <div>
+        <h3>Modify your notes here !</h3>
+    </div>
+    <label for="heading">Title </label>
+        <input type="text" name="heading" id="heading" value="{{notes.heading}}">
+        <label for="description">Description </label>
+    <textarea name="description" id="description" >{{notes.description}}</textarea>
+        <input type="image" src="{% static 'MyAppStatic/media/modify_icon.png' %}" alt="Modify" width="35px" height="35px">
+        <a href="{% url 'home' %}"><img src="{% static 'MyAppStatic/media/home_icon.png' %}" height="35px" width="35px"></a>
+</form>
+</body>
+</html>
