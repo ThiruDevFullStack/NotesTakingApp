@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
    <title>Notes | Taking</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'MyAppStatic/css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'MyAppStatic/css/notes_common.css' %}">
     <link rel="stylesheet" href="{% static 'MyAppStatic/css/addNotesCss.css' %}">
     <link rel="icon " href="{% static 'MyAppStatic/media/notes_taiking.png' %}">
    <style>
@@ -12,6 +12,13 @@
     </style>
 </head>
 <body>
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            alert("{{ message }}");
+        </script>
+    {% endfor %}
+{% endif %}
 <div class="adding_data">
     <div class="texts">
         <h2>Add your notes here !</h2>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Notes | Taking</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'MyAppStatic/css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'MyAppStatic/css/notes_common.css' %}">
     <link rel="stylesheet" href="{% static 'MyAppStatic/css/index_page_css.css' %}">
     <link rel="icon " href="{% static 'MyAppStatic/media/notes_taiking.png' %}">
     <style>
@@ -21,7 +21,7 @@
 
     <form autocomplete="off">
         <input type="text" name="search" placeholder="Search here">
-        <input type="image" src="{% static 'MyAppStatic/media/search_icon.png' %}" alt="Delete" width="40px" height="40px" onclick="clearData(0">
+        <input type="image" src="{% static 'MyAppStatic/media/search_icon.png' %}" alt="Delete" width="40px" height="40px" onclick="clearData(0)">
         <a href="{% url 'home' %}"><img src="{% static 'MyAppStatic/media/all_icon.png' %}" height="45px" width="45px"  id="all_icon"></a>
     </form>
     <div class="add_icon">

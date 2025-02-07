@@ -33,30 +33,19 @@ def index_page(request):
     return render(request,"MyAppHTML/index.html",context={'notes':notes})
 
 def add_notes(request):
+    if request.method == 'POST':
+        head = request.POST.get('heading', '').strip()
+        desc = request.POST.get('description', '').strip()
 
-    try:
-        notes_time=None
-        if request.method == 'POST':
-            heading = request.POST['heading']
-            description = request.POST['description']
-            current_datetime = datetime.now()
-            notes = NotesTaking(heading=heading, description=description,modified_date=current_datetime)
-            notes.save()
+        if not head and not desc:
+            messages.error(request, "Fill out all fields")
+            return redirect('addnotes')
 
-            return HttpResponse("""
-                            <script>
-                            alert("Your notes was saved !");
-                            window.location.href = '';
-                            </script>
-                            """)
-    except Exception as e:
-        return HttpResponse("""
-                <script>
-                alert("Please Enter All Datas !");
-                window.history.back()
-                </script>
-                """)
-    return render(request,"MyAppHTML/addNotes.html")
+        NotesTaking.objects.create(heading=head, description=desc, modified_date=datetime.now())
+        messages.success(request, "Your note was saved!")
+        return redirect('home')
+
+    return render(request, "MyAppHTML/addNotes.html")
 
 def deleteNotes(request,id):
     notes = NotesTaking.objects.get(id=id)
@@ -82,7 +71,7 @@ def updateNotes(request,id):
 
         if heading_data and description_data:
             notes.heading=heading_data
-            notes.description=description_data
+            notes.description = description_data
             current_datetime = datetime.now()
             notes.modified_date = current_datetime
 
